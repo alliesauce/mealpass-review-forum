@@ -1,0 +1,11 @@
+<li>
+  <%= link_to restaurant.name, restaurant_path(restaurant) %>
+  <p>Address: <%= restaurant.raw_address %><br /> <!-- Coordinates: <%= restaurant.lat %> <%= restaurant.lng %></p> -->
+    <input type='hidden' id='name+<%= restaurant.id %>' value='<%= restaurant.name %>'>
+    <input type='hidden' id='lat+<%= restaurant.id %>' value='<%= restaurant.lat %>'>
+    <input type='hidden' id='lng+<%= restaurant.id %>' value='<%= restaurant.lng %>'>
+  <p>Meals (<%= restaurant.meals.count %>)</p>
+  <% if !current_user?(@user) && current_user.admin? %>
+    <%= link_to "Admin delete", restaurant, method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
+</li>

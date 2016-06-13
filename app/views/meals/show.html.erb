@@ -1,0 +1,38 @@
+<% provide(:title, @meal.name) %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-lg-12">
+    <h1>
+      <%= @meal.name %>
+    </h1>
+    <div>
+    <em><%= @meal.description %></em>
+    <% if !current_user?(@user) && current_user.admin? %>
+      | <%= link_to "delete", @meal, method: :delete, data: { confirm: "Are you sure?" } %>
+      | <%= link_to "update", [:edit, @meal] %>
+    <% end %>
+    </div>
+    <div id="reviews">
+    <% if @meal.reviews.any? %>
+      <h3>Reviews (<%= @meal.reviews.count %>) </h3>
+      <div class="meals">
+        <% @reviews.each do |review| %>
+          <h4><%= review.title %><em> - by <%= review.user.username %></em></h4><br />
+          <%= review.content %><br />
+          <% if !current_user?(@user) && current_user.admin? %>
+            <%= link_to "Admin delete", review, method: :delete, data: { confirm: "Are you sure?" } %>
+            | <%= link_to "Admin edit", [:edit, review] %>
+          <% end %>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  <h4><%= link_to "Back to restaurants", restaurants_url %></h4>
+
+  </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+<% provide(:title, 'Add a restaurant') %>
+<h1>Add a restaurant</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@restaurant) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :raw_address, "Address" %>
+      <%= f.text_field :raw_address, class: 'form-control' %>
+
+      <%= f.submit "Add restaurant", class: "btn btn-primary" %>
+    <% end %>
+
+    <p><%= link_to "Return to all restaurants", restaurants_path %></p>
+  </div>
+  <div id="map"></div>
+</div>

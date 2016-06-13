@@ -1,0 +1,19 @@
+<% provide(:title, @review.title) %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-lg-12">
+    <% if @meal.reviews.any? %>
+        <h3>Reviews (<%= @meal.reviews.count %>) </h3>
+        <div class="meals">
+          <h4><%= @review.title %></h4>
+          <div>
+            <em><%= @review.content %></em>
+            <% if !current_user?(@user) && current_user.admin? %>
+              | <%= link_to "delete", @review, method: :delete, data: { confirm: "Are you sure?" } %>
+              | <%= link_to "update", [:edit, @review] %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
+

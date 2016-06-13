@@ -1,0 +1,34 @@
+<% provide(:title, @user['username'].to_s.capitalize) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user['username'].to_s.capitalize %>
+      </h1>
+      <div class="about_me">
+      <%= @user.about_me %>
+      </div>
+      <div>
+        <% if @user.reviews.any? %>
+          <h3>Reviews (<%= @user.reviews.count %>)</h3>
+          <ol class="reviews">
+            <%= render @reviews %>
+          </ol>
+          <%= will_paginate @reviews %>
+        <% end %>
+      </div>
+      <div>
+        <% if @user.comments.any? %>
+          <h3>comments (<%= @user.comments.count %>)</h3>
+          <ol class="comments">
+            <%= render @comments %>
+          </ol>
+          <%= will_paginate @comments %>
+        <% end %>
+      </div>
+    </section>
+  </aside>
+</div>
+
+

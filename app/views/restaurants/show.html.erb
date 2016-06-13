@@ -1,0 +1,38 @@
+<% provide(:title, @restaurant.name) %>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-lg-7">
+    <h1>
+      <%= @restaurant.name %>
+    </h1>
+    <div>
+    <%= @restaurant.raw_address %>
+    <input type='hidden' id='name' value='<%= @restaurant.name %>'>
+    <input type='hidden' id='lat' value='<%= @restaurant.lat %>'>
+    <input type='hidden' id='lng' value='<%= @restaurant.lng %>'>
+    <% if !current_user?(@user) && current_user.admin? %>
+      | <%= link_to "delete", @restaurant, method: :delete, data: { confirm: "Are you sure?" } %>
+      | <%= link_to "update", [:edit, @restaurant] %>
+    <% end %>
+    </div>
+    <div id="meals">
+      <% if @restaurant.meals.any? %>
+        <h3>Meals</h3>
+        <ol class="meals">
+          <%= render @meals %>
+        </ol>
+      <% end %>
+      <% if logged_in? %>
+        <div class="row">
+          <aside class="col-md-4">
+            <section class="micropost_form">
+              <%= render 'shared/meal_form' %>
+            </section>
+          </aside>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-5">
+    <%= render 'layouts/map' %>
+  </div>
+</div>

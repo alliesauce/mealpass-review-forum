@@ -1,0 +1,22 @@
+<% provide(:title, 'All restaurants') %>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-lg-12">
+
+    <h1>All Restaurants</h1>
+
+    <%= will_paginate %>
+
+    <ul class="users">
+      <%= render @restaurants %>
+    </ul>
+
+    <%= will_paginate %>
+    <br />
+    <% if logged_in? %>
+      <%= link_to 'Add restaurant', new_restaurant_path, class: 'btn btn-primary btn-lg' %>
+    <% end %>
+  </div>
+
+</div>
+

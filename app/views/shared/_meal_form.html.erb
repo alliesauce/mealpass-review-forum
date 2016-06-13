@@ -1,0 +1,9 @@
+<%= form_for(@meal) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <h3>Meal not listed?</h3>
+  <div class="field">
+    <%= f.text_field :name, placeholder: "Add another meal..." %>
+    <%= f.text_area :description, placeholder: "Add description" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

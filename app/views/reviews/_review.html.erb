@@ -1,0 +1,6 @@
+<li id="review-<%= review.id %>">
+  <%= link_to gravatar_for(review.user, size: 50), review.user %>
+  <span class="user"><%= link_to review.user.username, review.user %></span>
+  <span class="title"><%= review.title %></span>
+  <span class="content"><%= review.content %></span>
+</li>
